@@ -1,6 +1,12 @@
 
 
-
+<% if current_user %>
+<%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+<%= link_to('修改密碼', edit_registration_path(:user)) %>
+<% else %>
+<%= link_to('註冊', new_registration_path(:user)) %> |
+<%= link_to('登入', new_session_path(:user)) %>
+<% end %>
 
 
 <div>
@@ -31,9 +37,7 @@
 <tr>
 
   <td><%= link_to "#{t.title}", topic_path(t) %></td>
- <td><%#= link_to "#{t.email}",user_info_topics_path(:uid => t.user)%>
-name
-</td>
+ <td><%= t.try(:email) %></td>
 <td><%= t.try(:num)%></td>
 <td><%= t.try(:latesttime) %></td>
 

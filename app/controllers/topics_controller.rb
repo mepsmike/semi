@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
 	def create
 
 		@topic=Topic.new(get_params)
+		@topic.user_id = current_user
 		@topic.save
 		redirect_to topics_path
 	end
@@ -44,7 +45,7 @@ class TopicsController < ApplicationController
 
 	def get_params
 
-		params.require(:topic).permit(:title, :content, :category)
+		params.require(:topic).permit(:title, :content, :category_id,:user_id)
 
 	end
 
