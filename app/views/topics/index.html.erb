@@ -1,0 +1,41 @@
+
+
+
+
+
+<div>
+</br>
+<%= link_to("發文", new_topic_path ) %>
+</div>
+
+
+
+
+
+<table class="table table-bordered text-center table-condensed">
+
+<tr>
+
+<td>主題</td>
+
+<td>作者</td>
+
+<td>回覆/瀏覽人數</td>
+
+<td>最後回覆</td>
+
+</tr>
+
+<% @topics.each do |t| %>
+
+<tr>
+
+  <td><%= link_to "#{t.title}", topic_path(t) %></td>
+ 
+
+</tr>
+
+<% end %>
+
+</table>
+

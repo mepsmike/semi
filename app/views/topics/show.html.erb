@@ -1,0 +1,16 @@
+
+
+
+
+<h1><%= @topic.title %></h1>
+	<p><%= @topic.content %></p>
+
+
+
+	<%= form_for @comment ,:url => topic_comments_path(@topic) do |c|%>
+	<div class="form-group">
+	<%= c.label :content ,"留言" %></br>
+	<%= c.text_area :content,:class=>"form-control",:rows=>8 %></br>
+	</div>
+  <%= c.submit "發表" , :class => "btn btn-success" %>
+ <% end %>
