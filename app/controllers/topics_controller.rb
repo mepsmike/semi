@@ -5,7 +5,8 @@ class TopicsController < ApplicationController
 
 	def index
 
-		@topics=Topic.all
+		@topics=Topic.select("topics.id, topics.title, topics.user_id, count(comments.id) as num,topics.created_at as latesttime").joins("LEFT JOIN comments ON comments.topic_id = topics.id" ).group("topics.id")
+
 
 	end
 
@@ -24,7 +25,7 @@ class TopicsController < ApplicationController
 	end
 
 	def show
-		
+
 		@comment=Comment.new
 		@comments=@topic.comments
 
@@ -43,7 +44,7 @@ class TopicsController < ApplicationController
 
 	def get_params
 
-		params.require(:topic).permit(:title, :content, :status,:category_ids => [])
+		params.require(:topic).permit(:title, :content, :category)
 
 	end
 
